@@ -54,7 +54,7 @@ class UserService {
       if (!user) {
         throw { error: "No user found" };
       }
-      return user;
+      return response;
     } catch (error) {
       console.log("Error while authenticating");
       throw { error };

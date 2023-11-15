@@ -7,8 +7,10 @@ const {
   getFolders,
 } = require("../../controller/folder-controller");
 
-router.post("/create", create);
-router.post("/update", updateName);
-router.get("/all", getFolders);
+const verifyUser = require("../../middlewares/auth-middleware");
+
+router.post("/create", verifyUser, create);
+router.post("/update", verifyUser, updateName);
+router.get("/all", verifyUser, getFolders);
 
 module.exports = router;
