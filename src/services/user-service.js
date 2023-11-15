@@ -21,10 +21,10 @@ class UserService {
   async signIn(email, password) {
     try {
       const user = await this.userRepository.getUserByEmail(email);
-      // if (!user) {
-      //   console.log("No user exist with this email try signUp");
-      //   throw {error : "No user found"};
-      // }
+      if (!user) {
+        console.log("No user exist with this email try signUp");
+        throw { error: "No user found" };
+      }
       const passwordMatch = this.verifyPassword(
         password,
         user.dataValues.password

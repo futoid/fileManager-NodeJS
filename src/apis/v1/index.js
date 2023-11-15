@@ -1,17 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { ValidateAuthRequest } = require("../../middlewares/auth-middleware");
 
-const {
-  create,
-  signIn,
-  isAuthenticated,
-} = require("../../controller/user-controller");
+const userRouter = require("../v1/user");
+const folderRouter = require("../v1/folder");
 
-router.post("/signup", ValidateAuthRequest, create);
-router.post("/signin", ValidateAuthRequest, signIn);
-
-//Authentication API
-router.get("/auth", isAuthenticated);
+router.use("/user", userRouter);
+router.use("/folder", folderRouter);
 
 module.exports = router;
