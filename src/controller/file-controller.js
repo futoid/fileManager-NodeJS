@@ -77,10 +77,11 @@ const updateFile = async (req, res) => {
   try {
     const data = {
       id: req.body.fileId,
+      userId: req.body.userId,
     };
     req.body.fileName ? (data.fileName = req.body.fileName) : " ";
     req.body.parentFolder ? (data.parentFolder = req.body.parentFolder) : " ";
-
+    req.body.isPublic ? (data.isPublic = req.body.isPublic) : " ";
     const response = await fileService.updateFile(data);
     return res.status(200).json({
       data: response,
@@ -98,9 +99,32 @@ const updateFile = async (req, res) => {
   }
 };
 
+const getFileIfPublic = async (req, res) => {
+  try {
+    const data = {
+      id: req.query.id,
+    };
+    const response = await fileService.getFileIfPublic(data);
+    return res.status(200).json({
+      data: response,
+      success: "true",
+      message: "public file data fetched",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: "false",
+      message: "access denied",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   getFiles,
   deleteFile,
   updateFile,
+  getFileIfPublic,
 };

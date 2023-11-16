@@ -39,7 +39,26 @@ class FileService {
     try {
       const response = this.fileRepository.updateFile(data);
       return response;
-    } catch (err) {
+    } catch (error) {
+      console.log("error in file service layer");
+      throw { error };
+    }
+  }
+
+  async getFileIfPublic(data) {
+    try {
+      const response = await this.fileRepository.getFileIfPublic(data);
+      if (response === null) {
+        throw "file might not exist or deleted";
+      }
+      if (!response.isPublic) {
+        throw "access denied, ask owner to make it public";
+      }
+      return {
+        fileLink: response.fileLink,
+        fileName: response.fileName,
+      };
+    } catch (error) {
       console.log("error in file service layer");
       throw { error };
     }

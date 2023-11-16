@@ -6,13 +6,16 @@ const {
   getFiles,
   deleteFile,
   updateFile,
+  getFileIfPublic,
 } = require("../../controller/file-controller");
 
 const verifyUser = require("../../middlewares/auth-middleware");
 
 router.post("/add", verifyUser, create);
-router.get("/get", verifyUser, getFiles);
 router.post("/remove", verifyUser, deleteFile);
 router.post("/update", verifyUser, updateFile);
+
+router.get("/get", verifyUser, getFiles);
+router.get("/", getFileIfPublic);
 
 module.exports = router;

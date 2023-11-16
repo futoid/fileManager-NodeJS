@@ -38,6 +38,9 @@ class FolderRepository {
   async updateFolder(data) {
     try {
       const folderData = await this.#getFolderById(data.id);
+      if (folderData.userId !== data.userId) {
+        throw "you cannot update this file";
+      }
       if (data.folderName) {
         folderData.folderName = data.folderName;
       }

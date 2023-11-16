@@ -13,7 +13,7 @@ const verifyUser = async (req, res, next) => {
       });
     }
     const response = await isAuthenticated(token);
-    if (response.id != req.body.userId) throw { error };
+    if (response.id !== req.body.userId) throw "user token cannot be verified";
     next();
   } catch (error) {
     return res.status(500).json({

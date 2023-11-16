@@ -7,7 +7,7 @@ class FileRepository {
       return file;
     } catch (error) {
       console.log("Error in file repository layer");
-      throw { err };
+      throw { error };
     }
   }
 
@@ -17,7 +17,7 @@ class FileRepository {
       return fileResponse;
     } catch (error) {
       console.log("Error in file repository layer");
-      throw { err };
+      throw { error };
     }
   }
 
@@ -31,7 +31,7 @@ class FileRepository {
       return response;
     } catch (error) {
       console.log("Error in file repository layer");
-      throw { err };
+      throw { error };
     }
   }
 
@@ -46,24 +46,40 @@ class FileRepository {
       return true;
     } catch (error) {
       console.log("Error in file repository layer");
-      throw { err };
+      throw { error };
     }
   }
 
   async updateFile(data) {
     try {
       const fileData = await this.#getFileDatabyId(data.id);
+      if (data.userId !== fileData.userId) {
+        throw "you cannot update this file";
+      }
       if (data.fileName) {
         fileData.fileName = data.fileName;
       }
       if (data.parentFolder) {
         fileData.parentFolder = data.parentFolder;
       }
+      if (data.isPublic) {
+        fileData.isPublic = data.isPublic;
+      }
       await fileData.save();
       return fileData;
     } catch (error) {
-      console.log("Error in folder repository layer");
-      throw { err };
+      console.log("Error in file repository layer");
+      throw { error };
+    }
+  }
+
+  async getFileIfPublic(data) {
+    try {
+      const fileData = await File.findByPk(data.id);
+      return fileData;
+    } catch (error) {
+      console.log("Error in file repository layer");
+      throw { error };
     }
   }
 }

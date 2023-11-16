@@ -32,6 +32,7 @@ const update = async (req, res) => {
   try {
     const folderData = {
       id: req.body.folderId,
+      userId: req.body.userId,
     };
     req.body.folderName ? (folderData.folderName = req.body.folderName) : " ";
     req.body.parentFolder
