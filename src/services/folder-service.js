@@ -15,11 +15,9 @@ class FolderService {
     }
   }
 
-  async updateFolderName(data) {
+  async updateFolder(data) {
     try {
-      const folderResponse = await this.folderRespository.updateFolderName(
-        data
-      );
+      const folderResponse = await this.folderRespository.updateFolder(data);
       return folderResponse;
     } catch (error) {
       console.log("error in folder service layer");

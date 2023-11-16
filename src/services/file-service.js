@@ -34,6 +34,16 @@ class FileService {
       throw { error };
     }
   }
+
+  async updateFile(data) {
+    try {
+      const response = this.fileRepository.updateFile(data);
+      return response;
+    } catch (err) {
+      console.log("error in file service layer");
+      throw { error };
+    }
+  }
 }
 
 module.exports = FileService;

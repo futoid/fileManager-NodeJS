@@ -28,9 +28,8 @@ const create = async (req, res) => {
   }
 };
 
-const updateName = async (req, res) => {
+const update = async (req, res) => {
   try {
-    console.log(req.body);
     const folderData = {
       id: req.body.folderId,
     };
@@ -38,7 +37,7 @@ const updateName = async (req, res) => {
     req.body.parentFolder
       ? (folderData.parentFolder = req.body.parentFolder)
       : " ";
-    const folderResponse = await folderService.updateFolderName(folderData);
+    const folderResponse = await folderService.updateFolder(folderData);
     return res.status(200).json({
       data: folderResponse,
       success: "true",
@@ -76,6 +75,6 @@ const getFolders = async (req, res) => {
 
 module.exports = {
   create,
-  updateName,
+  update,
   getFolders,
 };

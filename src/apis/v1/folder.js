@@ -3,14 +3,14 @@ const router = express.Router();
 
 const {
   create,
-  updateName,
+  update,
   getFolders,
 } = require("../../controller/folder-controller");
 
 const verifyUser = require("../../middlewares/auth-middleware");
 
 router.post("/create", verifyUser, create);
-router.post("/update", verifyUser, updateName);
+router.post("/update", verifyUser, update);
 router.get("/all", verifyUser, getFolders);
 
 module.exports = router;

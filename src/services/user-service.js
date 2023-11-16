@@ -84,7 +84,6 @@ class UserService {
   verifyToken(token) {
     try {
       const response = jwt.verify(token, JWT_KEY);
-      console.log(response);
       return response;
     } catch (error) {
       console.log("Error in token verification");

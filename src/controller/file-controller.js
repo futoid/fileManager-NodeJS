@@ -32,7 +32,6 @@ const getFiles = async (req, res) => {
   try {
     const data = {
       userId: req.body.userId,
-      parentFolder: req.body.parentFolder,
     };
     const response = await fileService.getFiles(data);
     return res.status(200).json({
@@ -74,8 +73,34 @@ const deleteFile = async (req, res) => {
   }
 };
 
+const updateFile = async (req, res) => {
+  try {
+    const data = {
+      id: req.body.fileId,
+    };
+    req.body.fileName ? (data.fileName = req.body.fileName) : " ";
+    req.body.parentFolder ? (data.parentFolder = req.body.parentFolder) : " ";
+
+    const response = await fileService.updateFile(data);
+    return res.status(200).json({
+      data: response,
+      success: "true",
+      message: "Folder Name Updated",
+      error: {},
+    });
+  } catch (error) {
+    return res.status(500).json({
+      data: {},
+      success: "false",
+      message: "not able to update file",
+      error: error,
+    });
+  }
+};
+
 module.exports = {
   create,
   getFiles,
   deleteFile,
+  updateFile,
 };

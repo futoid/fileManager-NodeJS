@@ -35,9 +35,8 @@ class FolderRepository {
     }
   }
 
-  async updateFolderName(data) {
+  async updateFolder(data) {
     try {
-      console.log(data);
       const folderData = await this.#getFolderById(data.id);
       if (data.folderName) {
         folderData.folderName = data.folderName;
