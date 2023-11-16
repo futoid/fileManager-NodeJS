@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const { File } = require("../models/index");
 
 class FileRepository {
@@ -23,11 +24,22 @@ class FileRepository {
 
   async getFiles(data) {
     try {
-      const response = await File.findAll({
-        where: {
-          userId: data.userId,
-        },
-      });
+      let response, filterString;
+      if (data.fileName) {
+        filterString = data.fileName + "?";
+        response = await File.findAll({
+          where: {
+            userId: data.userId,
+            fileName: { [Op.regexp]: filterString },
+          },
+        });
+      } else {
+        response = await File.findAll({
+          where: {
+            userId: data.userId,
+          },
+        });
+      }
       return response;
     } catch (error) {
       console.log("Error in file repository layer");

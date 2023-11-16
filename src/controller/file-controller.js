@@ -33,6 +33,9 @@ const getFiles = async (req, res) => {
     const data = {
       userId: req.body.userId,
     };
+    if (req.query.search) {
+      data.fileName = req.query.search;
+    }
     const response = await fileService.getFiles(data);
     return res.status(200).json({
       data: response,
