@@ -61,6 +61,16 @@ class UserService {
     }
   }
 
+  async getCurrentUser(token) {
+    try {
+      const user = this.verifyToken(token);
+      return user;
+    } catch (error) {
+      console.log("Not able to get user in user service");
+      throw { error };
+    }
+  }
+
   createToken(user) {
     try {
       const token = jwt.sign(user, JWT_KEY, { expiresIn: "1d" });
@@ -74,6 +84,7 @@ class UserService {
   verifyToken(token) {
     try {
       const response = jwt.verify(token, JWT_KEY);
+      console.log(response);
       return response;
     } catch (error) {
       console.log("Error in token verification");

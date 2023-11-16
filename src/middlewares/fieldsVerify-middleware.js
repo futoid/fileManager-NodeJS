@@ -1,4 +1,4 @@
-const ValidateAuthRequest = (req, res, next) => {
+const fieldsVerify = (req, res, next) => {
   if (!req.body.email || !req.body.password) {
     return res.status(400).json({
       data: {},
@@ -11,5 +11,5 @@ const ValidateAuthRequest = (req, res, next) => {
 };
 
 module.exports = {
-  ValidateAuthRequest,
+  fieldsVerify,
 };
