@@ -19,5 +19,8 @@ module.exports = {
   PORT: process.env.PORT,
   SALT: bcrypt.genSaltSync(10),
   JWT_KEY: process.env.JWT_KEY,
+  S3_REGION: process.env.S3_REGION,
+  ACCESS_KEY: process.env.ACCESS_KEY,
+  SECRET_KET: process.env.SECRET_KET,
   dbconnect: connectToDB,
 };
