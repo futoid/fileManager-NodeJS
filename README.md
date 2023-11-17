@@ -1,6 +1,18 @@
 # fileManager-NodeJS
 ![image](https://github.com/futoid/fileManager-NodeJS/assets/65010518/77416e41-1b5b-44f5-9622-7ea9a320f133)
-## API's defined in depth
+# Tech Technologies
+- NodeJS
+- AMAZON S3
+### npm Packages
+- express
+- aws-sdk
+- multer, multer-s3
+- jsonwebtoken, bcrypt
+- sequelize, sequelize-cli
+- dotenv, body-parser
+- pg, pg-hstore
+- nodemon (dev dependency)
+# API's defined in depth
 Every API starts with `/api/v1` here `api` defines that the link is an API, and `v1` mentions the version of the API.
 All endpoints are defined in the way they'll be used in real life.
 ### User API
@@ -79,8 +91,60 @@ The above endpoint will upload the file and return the data from S3 bucket
     **Query Parameter**: fileId \
     **Response** : file data / Error 
 ####
+# Local Development Setup
+### INSTALL
+[Node](https://nodejs.org/en/download) \
+[Postgres](https://www.postgresql.org/download/)
+### Open terminal
+1. Clone this repository 
+ ```
+git clone git clone git@github.com:futoid/fileManager-NodeJS.git
+```
+3. Installing all dependency 
+```
+npm install
+```
+5. Creating NEW DATABASE
+```
+psql -U <PSQL_USERNAME>
+```
+Create a new database. And remember this DATABASE_NAME. 
+```
+CREATE DATABASE <DATABASE_NAME>
+```
+## change `/src/config/config.json`
+```
+{
+  "development": {
+    "username": PSQL_USERNAME,
+    "password": POSTGRES_PASSWORD,
+    "database": DATABASE_NAME,
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
+```
+## create `.env`
+```
+PORT = PORT
+JWT_KEY = STRONG KEY - ANYTHING not common
+DEV_DATABASE_URL = postgres://postgres:admin@127.0.0.1:5432/<DATABASE_NAME>
+USERNAME = PSQL_USERNAME
+DB_PASSWORD = POSTGRES_PASSWORD
 
-
- 
-
-
+# S3 Access Keys
+S3_REGION = 
+ACCESS_KEY = 
+SECRET_KET = 
+```
+## Creating Tables
+```
+npx sequelize db:migrate
+```
+This command will create all required tables into our DATABASE as mentioned in `./src/models` folder
+## RUNNING PROJECT
+```
+npm start
+```
+# Test all endpoints in any API testing tool.
+Created by: Aliek Mandal
