@@ -91,6 +91,31 @@ The above endpoint will upload the file and return the data from S3 bucket
     **Query Parameter**: fileId \
     **Response** : file data / Error 
 ####
+
+# Folder Structure Explained in .\src
+   - `\apis`:
+     API folder handles all the endpoint names and versions.
+   - `\config`:
+     CONFIG folder handled database connection, database configuration, and environment variable exports
+   - `\controller`:
+     CONTROLLER layer folder handles all requests and responses that an API endpoint is getting.
+   - `\middlewares`:
+     MIDDLEWARES have two middleware files one is to verify the user inputs and another to check the authorization of the user.
+   - `\migration`:
+     This folder tracks all changes in the schema of any particular table.
+   - `\models`:
+     MODELS folder contains all schema information about a table.
+   - `\respository`:
+     REPOSITORY layer has access to directly create changes in the database.
+   - `\seeders`:
+     SEEDERS folder is used to insert sample data into the tables
+   - `\service`:
+     SERVICE layer very important layer that contains all business logic and complexities.
+   - `\index.html`:
+     HTML file provides interface to upload file
+   - `\index.js`
+     MAIN file which handles the start server and handles all requests.
+
 # Local Development Setup
 ### INSTALL
 [Node](https://nodejs.org/en/download) \
