@@ -27,7 +27,7 @@ This takes body params, the user's **EMAIL**, and **PASSWORD**. Raw passwords wi
 #### 
 3. **We'll be needing some API to get user details from JWT token** \
    `.../user/currentUser` \
-   x-access-token (header parameter)**[RHP]**: JWT Token
+   x-access-token (header parameter)**[RHP]**: JWT Token \
    Response: User Details 
 ####
 ### Folder API
@@ -123,13 +123,13 @@ The above endpoint will upload the file and return the data from S3 bucket
 ### Open terminal
 1. Clone this repository 
  ```
-git clone git clone git@github.com:futoid/fileManager-NodeJS.git
+git clone git@github.com:futoid/fileManager-NodeJS.git
 ```
-3. Installing all dependency 
+2. Installing all dependency 
 ```
 npm install
 ```
-5. Creating NEW DATABASE
+3. Creating NEW DATABASE
 ```
 psql -U <PSQL_USERNAME>
 ```
